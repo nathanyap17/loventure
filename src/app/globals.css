@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fantasy Color Palette - Enriched from Stitch designs */
+  --color-fantasy-deep: #0a0718;
+  --color-fantasy-mid: #1a1340;
+  --color-fantasy-light: #24243e;
+  --color-fantasy-gold: #f2d00d;
+  --color-fantasy-gold-warm: #ffd700;
+  --color-fantasy-purple: #b39ddb;
+  --color-fantasy-purple-deep: #7c4dff;
+  --color-fantasy-pink: #f48fb1;
+  --color-fantasy-rose: #ff6b9d;
+  --color-fantasy-teal: #64ffda;
+  --color-fantasy-amber: #ffab40;
+
+  /* Base Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Font Families */
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-cinzel), serif;
+}
+
+:root {
+  --background: #0a0718;
+  --foreground: #e8e0f0;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    color: var(--foreground);
+    background-color: var(--background);
+
+    /* Richer starfield background */
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(124, 77, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(242, 208, 13, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(244, 143, 177, 0.04) 0%, transparent 40%),
+      radial-gradient(white, rgba(255, 255, 255, 0.25) 1px, transparent 2px),
+      radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 2px),
+      radial-gradient(white, rgba(255, 255, 255, 0.1) 1px, transparent 2px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 0 0, 0 0, 0 0, 40px 60px, 130px 270px;
+    animation: twinkle 200s linear infinite;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom selection color */
+  ::selection {
+    background-color: rgba(242, 208, 13, 0.3);
+    color: #fff;
+  }
+}
+
+@keyframes twinkle {
+  from {
+    background-position: 0 0, 0 0, 0 0, 0 0, 40px 60px, 130px 270px;
+  }
+
+  to {
+    background-position: 0 0, 0 0, 0 0, -550px -550px, -350px -350px, -250px -250px;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+
+  75% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    filter: blur(40px);
+  }
+
+  50% {
+    opacity: 0.7;
+    filter: blur(60px);
+  }
+}
+
+@keyframes aurora {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  33% {
+    transform: rotate(120deg) scale(1.1);
+  }
+
+  66% {
+    transform: rotate(240deg) scale(0.9);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Utility Animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+.animate-aurora {
+  animation: aurora 20s linear infinite;
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-card-hover:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(242, 208, 13, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(242, 208, 13, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Gold Text Shimmer */
+.text-gold-shimmer {
+  background: linear-gradient(90deg,
+      #f2d00d 0%,
+      #ffd700 25%,
+      #fff8dc 50%,
+      #ffd700 75%,
+      #f2d00d 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar for main content */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 7, 24, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(242, 208, 13, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(242, 208, 13, 0.4);
+}
